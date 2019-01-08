@@ -5,18 +5,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_main_add"
+    <EditText
+        android:id="@+id/et_book_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="客户端  add" />
+        android:hint="请输入书名"
+        android:text="android开发" />
 
-    <Button
-        android:id="@+id/btn_main_book"
+    <EditText
+        android:id="@+id/et_book_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="客户端  book" />
+        android:hint="请输入价格"
+        android:inputType="number"
+        android:text="10" />
 
-
+    <Button
+        android:id="@+id/btn_book_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="客户端 添加"/>
 
 </LinearLayout>  
