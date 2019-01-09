@@ -29,6 +29,7 @@ public class BookActivity extends AppCompatActivity {
         findViewById(R.id.btn_book_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("baibai", "客户端：添加按钮 -- 当前线程Name = " + Thread.currentThread().getName() + ", id = " + Thread.currentThread().getId());
                 String name = ((EditText) findViewById(R.id.et_book_name)).getText().toString();
                 int price = Integer.parseInt(((EditText) findViewById(R.id.et_book_price)).getText().toString());
                 try {

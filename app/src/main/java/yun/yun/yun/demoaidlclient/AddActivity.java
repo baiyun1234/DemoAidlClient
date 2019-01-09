@@ -29,13 +29,26 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Log.d("baibai", "客户端：相加按钮 -- 当前线程Name = " + Thread.currentThread().getName() + ", id = " + Thread.currentThread().getId());
                 int x = Integer.parseInt(((EditText) findViewById(R.id.et_add_client_x)).getText().toString());
                 int y = Integer.parseInt(((EditText) findViewById(R.id.et_add_client_y)).getText().toString());
                 try {
-                    Log.d("baibai", "客户端 相加结果：" + mService.add(x, y));
+                    Log.d("baibai", "客户端：相加结果：" + mService.add(x, y));
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Log.d("baibai", "客户端：子线程：相加按钮 -- 当前线程Name = " + Thread.currentThread().getName() + ", id = " + Thread.currentThread().getId());
+                            Log.d("baibai", "客户端：子线程：相加结果：" + mService.add(5, 2));
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
 
             }
         });
@@ -47,7 +60,6 @@ public class AddActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction("bai.bai.bai.aidl.service_add");//5.0出现以后必须使用显示启动，不然会报错（加了下一行代码可解决这个问题）
         intent.setPackage("bai.bai.bai.demoaidlservice");//加了这行代码，就可以解决5.0版本后隐式启动服务报错的问题
-        Log.d("baibai", "aboutService");
         bindService(intent, mConn, Context.BIND_AUTO_CREATE);
     }
 
